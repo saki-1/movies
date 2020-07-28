@@ -1,0 +1,39 @@
+<div class="text-center">
+  <h1>映画の投稿</h1>
+</div>
+
+<div class="row">
+  <div class="col-sm-6 offset-sm-3">
+
+    <%= form_with(model: @movie, local: true) do |f| %>
+      <%= render 'layouts/error_messages', model: f.object %>
+      
+      <div class="form-group">
+        <%= f.label :title, 'タイトル' %>
+        <%= f.text_field :title, class: 'form-control' %>
+      </div>
+
+      <div class="form-group">
+        <%= f.label :content, '内容' %>
+        <%= f.text_field :content, class: 'form-control' %>
+      </div>
+
+      <div class="form-group">
+        <%= f.label :rank, 'お気に入り度' %>
+        <%= f.number_field :rank, min: 1, max: 5, step: 1, class: 'form-control' %>
+      </div>
+      
+      <div class="form-group">
+        <%= f.label :release_date, '公開日' %>
+        <%= f.date_field :release_date, class: 'form-control' %>
+      </div>
+      
+      <div class="form-group">
+        <%= f.label :picture, '写真' %>
+        <%= f.file_field :picture, class: 'form-control' %>
+      </div>
+
+      <%= f.submit '投稿する', class: 'btn btn-primary btn-block' %>
+    <% end %>
+  </div>
+</div>
