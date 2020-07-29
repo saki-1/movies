@@ -4,7 +4,9 @@
     <div class="col-sm-2"><%= movie.title %></div>
     <div class="col-sm-2"><%= truncate(movie.content, length:10) %></div>
     <div class="col-sm-2"><%= link_to '詳細', movie %></div>
-    <%= render 'favorites/fav_button', movie: movie %>
+    <% if logged_in? %>
+      <%= render 'favorites/fav_button', movie: movie %>
+    <% end %>
   </div>
 <% end %>
 
