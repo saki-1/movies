@@ -3,7 +3,7 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
-    @movies = current_user.movies.page(params[:page])
+    @movies = current_user.movies.page(params[:page]).per(3)
   end
 
   def new
@@ -25,7 +25,7 @@ class UsersController < ApplicationController
   
   def likes
     @user = User.find(params[:id])
-    @likes = @user.fav_movies.page(params[:page])
+    @likes = @user.fav_movies.page(params[:page]).per(3)
   end
   
   private
