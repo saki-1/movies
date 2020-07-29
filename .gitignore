@@ -26,6 +26,4 @@
 # Ignore master key for decrypting credentials and more.
 /config/master.key
 
-# 仮で除外する
-app/views/youtubes/
-app/controllers/youtubes_controller.rb
+/public/uploads/*

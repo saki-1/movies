@@ -38,6 +38,10 @@ gem 'bootsnap', '>= 1.1.0', require: false
 gem 'kaminari'
 
 # gem 'google-api-client', '0.9.20'
+gem 'google-api-client', '0.9.20', require: 'google/apis/youtube_v3'
+
+gem 'carrierwave', '~> 1.3', '>= 1.3.1'
+gem 'cloudinary'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

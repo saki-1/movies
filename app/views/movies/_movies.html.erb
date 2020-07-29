@@ -1,13 +1,19 @@
-<% movies.each do |movie| %>
-  <div class="media-body">
-    <div class="col-sm-2"><%= image_tag movie.picture.variant(resize:'200x200') %></div>
-    <div class="col-sm-2"><%= movie.title %></div>
-    <div class="col-sm-2"><%= truncate(movie.content, length:10) %></div>
-    <div class="col-sm-2"><%= link_to '詳細', movie %></div>
-    <% if logged_in? %>
-      <%= render 'favorites/fav_button', movie: movie %>
-    <% end %>
-  </div>
-<% end %>
+<div class="row">
+  <% movies.each do |movie| %>
+    <div class="col-md-4">
+      <div class="card mb-4 shadow-sm"><%= image_tag movie.image.url if movie.image? %></div>
+      <div class="card-body">
+        <div class="card-text"><%= movie.title %></div>
+        <div class="card-text"><%= truncate(movie.content, length:10) %></div>
+        <div class="btn-group"><%= link_to '詳細', movie, class: "btn btn-sm btn-outline-secondary" %></div>
+        <% if logged_in? %>
+          <div class="btn-group">
+            <%= render 'favorites/fav_button', movie: movie %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  <% end %>
+</div>
 
 <%= paginate movies %>

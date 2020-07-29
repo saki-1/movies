@@ -1,17 +1,19 @@
-<% if current_user.id == @movie.user_id %>
-  <%= @movie.title %>
-  <%= @movie.content %>
-  <%= @movie.rank %>
-  <%= @movie.release_date %>
-  <%= image_tag @movie.picture.variant(resize:'200x200') %>
-  <%= link_to '編集する', edit_movie_url %>
-  <%= link_to '削除する', @movie, method: :delete, data: { confirm: "you sure?" } %>
-  <%= link_to '一覧に戻る', movies_path, class: 'btn btn-primary btn-block' %>
-<% else %>
-  <%= @movie.title %>
-  <%= @movie.content %>
-  <%= @movie.rank %>
-  <%= @movie.release_date %>
-  <%= image_tag @movie.picture.variant(resize:'200x200') %>
-  <%= link_to '一覧に戻る', movies_path, class: 'btn btn-primary btn-block' %>
-<% end %>
+<div class="row">
+  <div class="col-md-4">
+    <div class="card mb-4 shadow-sm"><%= image_tag @movie.image.url %></div>
+  </div>
+  <div class="col-md-4">
+    <h3 class="mb-0"><%= @movie.title %></h3>
+    <p class="card-text"><%= @movie.content %></p>
+    <p class="card-text">お気に入り度：<%= @movie.rank %></p>
+    <p class="card-text">公開日：<%= @movie.release_date %></p>
+    <br>
+    <% if current_user.id == @movie.user_id %>
+      <%= link_to '編集する', edit_movie_url, class: "btn btn-sm btn-outline-secondary" %>
+      <%= link_to '削除する', @movie, method: :delete, data: { confirm: "you sure?" }, class: "btn btn-sm btn-outline-secondary" %>
+      <%= link_to '一覧に戻る', movies_path, class: "btn btn-sm btn-outline-secondary" %>
+    <% else %>
+      <%= link_to '一覧に戻る', movies_path, class: "btn btn-sm btn-outline-secondary" %>
+    <% end %>
+  </div>
+</div>
