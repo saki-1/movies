@@ -1,18 +1,16 @@
 class MoviesController < ApplicationController
+  before_action :set_movie, only:[:show, :edit, :update]
   before_action :require_user_logged_in, only:[:new, :create, :show]
+  before_action :correct_user, only:[:destroy]
   
   def index
-    @movies = Movie.all
+    @movies = Movie.all.page(params[:page]).per(3)
   end
   
   def new
     @movie = Movie.new
   end
-  
-  def show
-    @movie = Movie.find(params[:id])
-  end
-  
+
   def create
     @movie = Movie.new(movie_params)
     @movie.user_id = current_user.id
@@ -26,9 +24,42 @@ class MoviesController < ApplicationController
     end
   end
   
+  def show
+  end
+
+  def edit
+  end
+  
+  def update
+    if @movie.update(movie_params)
+      flash[:success] = '更新されました'
+      redirect_to @movie
+    else
+      flash.now[:danger] = '更新できませんでした'
+      render :edit
+    end
+  end
+  
+  def destroy
+    @movie.destroy
+    flash[:success] = '投稿を削除しました'
+    redirect_to root_url
+  end
+  
   private
+  
+  def set_movie
+    @movie = Movie.find(params[:id])
+  end
   
   def movie_params
     params.require(:movie).permit(:content, :rank, :title, :release_date, :picture)
+  end
+  
+  def correct_user
+    @movie = current_user.movies.find_by(id: params[:id])
+    unless @movie
+      redirect_to root_url
+    end
   end
 end

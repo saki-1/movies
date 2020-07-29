@@ -37,7 +37,7 @@ gem 'mini_magick', '~> 4.8'
 gem 'bootsnap', '>= 1.1.0', require: false
 gem 'kaminari'
 
-gem 'google-api-client', '0.9.20', require: 'google/apis/youtube'
+# gem 'google-api-client', '0.9.20'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

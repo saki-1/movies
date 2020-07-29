@@ -3,6 +3,7 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
+    @movies = current_user.movies.page(params[:page])
   end
 
   def new
@@ -20,6 +21,11 @@ class UsersController < ApplicationController
       flash.now[:danger] = 'ユーザーの登録に失敗しました'
       render :new
     end
+  end
+  
+  def likes
+    @user = User.find(params[:id])
+    @likes = @user.fav_movies.page(params[:page])
   end
   
   private

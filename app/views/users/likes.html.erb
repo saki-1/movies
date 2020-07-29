@@ -2,4 +2,4 @@
   <li class="nav-item"><a href="<%= user_path(@user) %>" class="nav-link <%= 'active' if current_page?(user_path(@user)) %>">Microposts</a></li>
   <li class="nav-item"><a href="<%= likes_user_path(@user) %>" class="nav-link">Favorites</span></a></li>
 </ul>
-<%= render 'movies/movies', movies: @movies %>
+<%= render 'movies/movies', movies: @likes %>

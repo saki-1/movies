@@ -1,5 +1,17 @@
-<%= @movie.title %>
-<%= @movie.content %>
-<%= @movie.rank %>
-<%= @movie.release_date %>
-<%= image_tag @movie.picture.variant(resize:'200x200') %>
+<% if current_user.id == @movie.user_id %>
+  <%= @movie.title %>
+  <%= @movie.content %>
+  <%= @movie.rank %>
+  <%= @movie.release_date %>
+  <%= image_tag @movie.picture.variant(resize:'200x200') %>
+  <%= link_to '編集する', edit_movie_url %>
+  <%= link_to '削除する', @movie, method: :delete, data: { confirm: "you sure?" } %>
+  <%= link_to '一覧に戻る', movies_path, class: 'btn btn-primary btn-block' %>
+<% else %>
+  <%= @movie.title %>
+  <%= @movie.content %>
+  <%= @movie.rank %>
+  <%= @movie.release_date %>
+  <%= image_tag @movie.picture.variant(resize:'200x200') %>
+  <%= link_to '一覧に戻る', movies_path, class: 'btn btn-primary btn-block' %>
+<% end %>
