@@ -40,7 +40,7 @@ gem 'kaminari'
 # gem 'google-api-client', '0.9.20'
 gem 'google-api-client', '0.9.20', require: 'google/apis/youtube_v3'
 
-gem 'carrierwave', '~> 1.3', '>= 1.3.1'
+gem 'carrierwave', '~> 1.3'
 gem 'cloudinary'
 
 group :development, :test do
